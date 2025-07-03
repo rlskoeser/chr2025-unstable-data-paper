@@ -1,0 +1,148 @@
+% THIS IS A LATEX TEMPLATE FILE FOR PAPERS INCLUDED IN THE
+% *Anthology of Computers and the Humanities*. ADD THE OPTION
+% 'final' WHEN CREATING THE FINAL VERSION OF THE PAPER. 
+% DO NOT change the documentclass
+%\documentclass[final]{anthology-ch} % for the final version
+\documentclass{anthology-ch}         % for the submission
+
+% LOAD LaTeX PACKAGES
+\usepackage{booktabs}
+\usepackage{graphicx}
+% ADD your own packages using \usepackage{}
+
+% TITLE OF THE SUBMISSION
+% Change this to the name of your submission
+\title{Unstable data, Unanticipated uses}
+
+% AUTHOR AND AFFILIATION INFORMATION
+% For each author, include a new call to the \author command, with
+% the numbers in brackets indicating the associated affiliations 
+% (next section) and ORCID-ID for each author.  
+\author[1]{Rebecca Sutton Koeser}[
+  orcid=0000-0002-8762-8057
+]
+
+\author[1]{Mary Naydan}[
+  orcid=0000-0002-7960-3175
+]
+
+% While we encourage including ORCID-IDs for all authors, you can
+% include authors that do not have one by definining an empty ID.
+%\author[1,2]{Meredith Martin}[
+\author[1,2]{Meredith Martin}[
+  orcid=0000-0003-0214-8757
+]
+
+% There should be one call to \affiliation for each affiliation of
+% the authors. Multiple affiliations can be given to each author
+% and an affiliation can be given to multiple authors. 
+\affiliation{1}{Center for Digital Humanities, Princeton University, Princeton, New Jersey, USA}
+% \affiliation{2}{Another Department, Another University, Another City, Another Country}
+
+% KEYWORDS
+% Provide one or more keywords or key phrases seperated by commas
+% using the following command
+\keywords{computers, humanities proceedings}
+
+% METADATA FOR THE PUBLICATION
+% This will be filled in when the document is published; the values can
+% be kept as their defaults when the file is submitted
+\pubyear{2025}
+\pubvolume{1}
+\pagestart{1}
+\pageend{1}
+\conferencename{Proceedings of Conference XXX}
+\conferenceeditors{Editor1 Editor2}
+\doi{00000/00000}  
+
+\addbibresource{bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HERE IS THE START OF THE TEXT
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This LaTeX template helps you typeset and format a paper for the Computational Humanities Research conference in the ACH Anthology. This template helps you adhere to the the required specifications and provides an example of how your paper should look. In practice, the abstract of the paper here should be a one-paragraph summary of the outline and main contributions of the paper. 
+\end{abstract}
+
+\section{Introduction} 
+
+Here is an example of the first section of the paper. You may modify \texttt{paper.tex} by renaming, deleting, or adding sections of your own and substituting our instructional text with the text of your paper. Add references to previous work to \texttt{biblography.bib} as BibTeX entries. Refer to the Conference Call for Papers (CfP) for details about submission types and paper lengths. Do \textit{not} modify \texttt{anthology-ch.cls} when editing this template. 
+
+\subsection{Details} \label{sec:intro_details}
+
+You may also include subsections if they help organize your text, but they
+are not required. Use as many sections and subsections with whatever names work
+for your submission!
+
+\paragraph{Another tip.} In some cases, it may be helpful to use \texttt{paragraph} to title individual paragraphs. For example, if a section describes features for a classifier, you can optionally title each paragraph with the name of each feature. 
+
+\section{Elements}
+
+\subsection{Citing elements}
+
+Here are some examples of how to construct and reference common elements in LaTeX. References to elements such as tables, figures, equations and sections make use of \texttt{label} names that you set. References to citations should use the labels you indicate in \texttt{bibliography.bib}. Change all of these examples and values with your own data. 
+
+We can cite Table~\ref{tab:example} as well as Figure~\ref{fig:example}, and we also cite an example paper \cite{tettoni2024discoverability}.
+We can also include mathematical notations, such as:
+\begin{align}
+f(y) &= x^2. \label{fig:squared}
+\end{align}
+The line number of the equation can be cited as
+Equation~\ref{fig:squared}. You can also cite multiple papers together \cite{barré2024latent, levenson2024textual, bambaci2024steps}, and reference figures or tables indirectly in parentheses (Figure~\ref{fig:example_bigger}). You can also cite other sections or subsections of your paper, such as \S\ref{sec:intro_details}. 
+
+
+\begin{table}[h]
+  \centering 
+  \begin{tabular}{cc}
+    \toprule
+    Column Name 1 & Column Name 2\\
+    \midrule
+    d1 & d2 \\
+    d1 & d2 \\
+    d1 & d2 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Example table and table caption.}
+  \label{tab:example}
+\end{table}
+
+
+\subsection{Required specifications}
+
+Tables and figures should \textit{not} appear at the top of the first page above the paper title and abstract, but can be placed within the main text, as exemplified by Table~\ref{tab:example}. They may also be placed at the top of non-first pages, as exemplified by Figures~\ref{fig:example} and \ref{fig:example_bigger}. Figures and tables discussed in the main text should appear \textit{before} the References section. Supplementary materials should be referenced by their relevant Appendix section, such as Appendix~\ref{appdx:first}. 
+
+Do \textit{not} change the font size of table and figure captions, or the spacing between text lines, section/subsection titles, tables, figures, and captions. You should size your figures and tables so that they stay within the \texttt{linewidth} of the paper. 
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.4\linewidth]{640x480.png}
+  \caption{Example figure and figure caption.}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.4\linewidth]{640x480.png}
+  \includegraphics[width=0.4\linewidth]{640x480.png}
+  \caption{Example figure, where two \texttt{.png} are placed side by side.}
+  \label{fig:example_bigger}
+\end{figure}
+
+\section*{Acknowledgements}
+
+This unnumbered section should be blank when submitting your paper. After review, you may include lists of people and organizations who supported the work.
+
+% Print the biblography at the end. Keep this line after the main text of your paper, and before an appendix. 
+\printbibliography
+
+% You can include an appendix using the following command
+\appendix
+
+\section{First Appendix Section} \label{appdx:first}
+
+Appendix sections should be ordered by letters rather than numbers, and their contents do not count towards the paper's length limit. Appendix sections may also contain additional tables and figures.  
+
+\end{document}
