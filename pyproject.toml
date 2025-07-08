@@ -8,7 +8,14 @@ version = "0.1.0"
 description = "Code, data, and LaTex for CHR2025 short paper."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["ruff", "marimo", "altair", "polars", "vl-convert-python"]
+dependencies = [
+    "ruff",
+    "marimo",
+    "altair",
+    "polars",
+    "vl-convert-python",
+    "intspan",
+]
 
 [tool.setuptools]
 packages = []
