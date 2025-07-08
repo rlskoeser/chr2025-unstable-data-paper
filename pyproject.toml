@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "chr2025-unstable-data-paper"
 version = "0.1.0"
@@ -5,3 +9,6 @@ description = "Code, data, and LaTex for CHR2025 short paper."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["ruff", "marimo", "altair", "polars", "vl-convert-python"]
+
+[tool.setuptools]
+packages = []
