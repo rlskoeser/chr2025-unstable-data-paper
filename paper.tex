@@ -42,7 +42,7 @@
 % KEYWORDS
 % Provide one or more keywords or key phrases seperated by commas
 % using the following command
-\keywords{computers, humanities proceedings}
+\keywords{humanities data, unstable data, reproducibility}
 
 % METADATA FOR THE PUBLICATION
 % This will be filled in when the document is published; the values can
@@ -69,7 +69,10 @@ This LaTeX template helps you typeset and format a paper for the Computational H
 
 \section{Introduction} 
 
-Here is an example of the first section of the paper. You may modify \texttt{paper.tex} by renaming, deleting, or adding sections of your own and substituting our instructional text with the text of your paper. Add references to previous work to \texttt{biblography.bib} as BibTeX entries. Refer to the Conference Call for Papers (CfP) for details about submission types and paper lengths. Do \textit{not} modify \texttt{anthology-ch.cls} when editing this template. 
+Data is essential for computational humanities research, but humanities data is rarely static. Whether research is based on small-scale, curated, and annotated data to test a particular method, or large-scale and expansive collections for measuring larger trends across huge swathes of content or time, or mid-size data somewhere in between, understanding the contents and provenance of a dataset are crucial to interpreting the results. The ability to share or recreate a dataset is crucial for reproducible research, which is essential for assessment, critique, and uptake of new methodologies. However, the ability to build on previous research is difficult when there is instability in research data sources,  particularly when that instability is unexpected or incompletely understood. 
+
+Unstable data is particularly challenging when data is used in novel or creative ways which were not anticipated by the data curators or publishers. Rufus Pollock, an early proponent of open knowledge and open data, has long argued that “the best thing to do with your data will be thought of by someone else” \cite{pollock_open_2011}. However, new and creative uses of data, and connections between data, are essential to research and new discoveries. In this paper, we share our experience working with stable unstable data in novel ways using the Princeton Prosody Archive (PPA) as a case study, with a particular focus on HathiTrust Digital Library. We use this as a way to explore the challenges of humanities data and to test the limits of current guidelines and  recommendations for reproducible research, humanities data publication, and consider the implications for the field of computational humanities.
+
 
 \subsection{Details} \label{sec:intro_details}
 
@@ -141,8 +144,65 @@ This unnumbered section should be blank when submitting your paper. After review
 % You can include an appendix using the following command
 \appendix
 
-\section{First Appendix Section} \label{appdx:first}
+\section{HathiTrust Statement for Dataset Distribution} \label{appdx:first}
 
-Appendix sections should be ordered by letters rather than numbers, and their contents do not count towards the paper's length limit. Appendix sections may also contain additional tables and figures.  
+By my signature, I acknowledge and confirm the following:
 
+\begin{enumerate}
+    \item  I am receiving texts from the University of Michigan that are made available under an agreement between my sponsoring institution - [indicate sponsoring institution, e.g., Dartmouth College] - and Google.
+    \item  I have read this agreement and agree to abide by its terms and to use the texts in accordance with the statement of my research, as submitted to the University of Michigan.
+    \item  I agree to notify the University of Michigan of any changes that are made in the scope or nature of my research.
+    \item  I understand that volumes I receive from the University of Michigan may be determined at a later date to be in copyright. I agree to delete these volumes and any copies that have been made upon notification from the University of Michigan. I agree to notify the University of Michigan at feedback@issues.hathitrust.org to confirm deletion of any such volumes.
+\end{enumerate}
+
+\rule{\textwidth}{0.5pt}
+
+Name \hspace{0.3\textwidth} Signature \hspace{0.3\textwidth} Date
+
+\rule{\textwidth}{0.5pt}
+
+Title
+
+\rule{\textwidth}{0.5pt}
+
+Email \hspace{0.3\textwidth}  Phone
+
+
+\section{Example HathiTrust deletion email for public domain dataset} \label{appdx:second}
+
+\begin{verbatim}
+Subject: Delete notifications for ht_text_pd dataset
+From: HathiTrust <support@hathitrust.org>
+
+Dear HathiTrust dataset recipient,
+
+This email is to notify you that volumes in the HathiTrust
+"ht_text_pd" dataset, of which you have downloaded all
+or a subset of files, no longer meet the criteria for
+inclusion in the dataset, and you no longer are allowed to
+use them in your research.
+
+Please review the data you have synced from HathiTrust to
+check whether you have the volumes listed below. If so,
+delete all copies you retain of these volumes in
+accordance with our terms of use. Alternatively, you may
+delete your copy of the dataset and re-sync to the updated
+dataset.
+
+If you no longer possess HathiTrust datasets, or if you
+have other questions regarding datasets, then please email
+support@hathitrust.org.
+
+Thank you,
+
+HathiTrust
+
+===BEGIN ID LIST===
+[ids omitted]
+...
+...
+...
+===END ID LIST===
+
+\end{verbatim}
 \end{document}
