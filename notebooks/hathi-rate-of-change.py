@@ -10,7 +10,7 @@ def _():
 
     import marimo as mo
     import polars as pl
-    return pathlib, pl
+    return mo, pathlib, pl
 
 
 @app.cell
@@ -84,7 +84,7 @@ def _(field_list, hathi_data_dir, pl):
         )
 
         update_data.append({"date": update_date, "num_updated": update_df.height})
-    return (update_data,)
+    return datetime, update_data
 
 
 @app.cell
@@ -133,6 +133,43 @@ def _(update_data_df):
     )
     combined_chart.save("figures/hathitrust_changes.pdf")
     combined_chart
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""## deletions from public domain dataset""")
+    return
+
+
+@app.cell
+def _(datetime, pathlib, pl, total_ht_vols):
+    hathi_deletion_dir = pathlib.Path("data/hathi/deletions")
+
+    deletion_count = []
+
+    start_str = "===BEGIN ID LIST==="
+    end_str = "===END ID LIST==="
+
+    for deletion_email in hathi_deletion_dir.glob("*.txt"):
+        deletion_date = datetime.datetime.strptime(
+            deletion_email.stem, "%Y-%m-%d"
+        ).date()
+        contents = deletion_email.open().read()
+        # use begin/end strings to isolate content of interest
+        deleted_id_list = contents.split(start_str)[1].split(end_str)[0]
+        # split on newlines and filter out any empty strings
+        deleted_ids = [
+            id for id in deleted_id_list.split("\n") if id.strip() != ""
+        ]
+        deletion_count.append({"date": deletion_date, "count": len(deleted_ids)})
+
+    deletion_df = (
+        pl.from_dicts(deletion_count)
+        .sort("date")
+        .with_columns(percent=pl.col("count").truediv(total_ht_vols))
+    )
+    deletion_df
     return
 
 
