@@ -169,7 +169,9 @@ def _(update_data_df):
         alt.Chart(update_data_df)
         .mark_bar(width=10)
         .encode(
-            x=alt.X("date", title="").axis(format="%B %d", tickCount="week"),
+            x=alt.X("date", title="").axis(
+                labels=False, tickCount="week"
+            ),  # suppress labels since will be combined
             y=alt.Y("num_updated", title="# updated"),
         )
     ).properties(width=840, height=200)
@@ -203,7 +205,9 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         alt.Chart(update_data_df)
         .mark_bar(width=10, color="#f05b69")
         .encode(
-            x=alt.X("date", title="").axis(format="%B %d", tickCount="week"),
+            x=alt.X("date", title="").axis(
+                labels=False, tickCount="week"
+            ),  # suppress labels since displayed together
             y=alt.Y("ppa_updated", title="# volumes updated"),
         )
         .properties(height=100)
