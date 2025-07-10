@@ -15,7 +15,7 @@ def _():
 
 @app.cell
 def _(pathlib):
-    hathi_data_dir = pathlib.Path("data/hathi")
+    hathi_data_dir = pathlib.Path("data/hathi/updates")
 
     field_list = (hathi_data_dir / "hathi_field_list.txt").open().read().split()
     field_list
@@ -23,46 +23,79 @@ def _(pathlib):
 
 
 @app.cell
-def _(field_list, pl):
-    # df = pl.scan_csv("data/hathi/hathi_full_20250701.txt.gz", has_header=False, new_columns=field_list, separator="\t")
-
-    # there's a field that is causing errors, polars says it is malformed; but if we select specific
-    # columns and ignore errors we can get the data
-
+def _(field_list, hathi_data_dir, pl):
+    # load most recent full dataset with specified field list; treat as TSV
 
     df = (
         pl.scan_csv(
-            # "data/hathi/hathi_upd_20250623.txt.gz",
-            "data/hathi/hathi_full_20250701.txt.gz",
+            hathi_data_dir / "hathi_full_20250701.txt",  # .gz",
             has_header=False,
             new_columns=field_list,
-            schema_overrides={"imprint": pl.datatypes.String},
             separator="\t",
-            ignore_errors=True,
+            quote_char=None,  # do not treat " as escape character, since it is used in smoe content
+            encoding="utf8",
         )
-        .select(["htid", "access", "rights", "collection_code"])
+        .select(
+            ["htid", "access", "rights", "collection_code", "access_profile_code"]
+        )
         .collect()
     )
 
-    df.head()
+    df.head(10)
     return (df,)
 
 
 @app.cell
 def _(df):
-    print(f"{df.height:,} rows")
-    return
+    total_ht_vols = df.height
 
-
-@app.cell
-def _():
-    total_ht_vols = 16_719_190
+    print(f"{total_ht_vols:,} total volumes")
     return (total_ht_vols,)
 
 
 @app.cell
-def _(field_list, hathi_data_dir, pl):
+def _(df):
+    df["rights"].value_counts()
+    return
+
+
+@app.cell
+def _(df):
+    df["access"].value_counts()
+    return
+
+
+@app.cell
+def _(df):
+    df["access_profile_code"].value_counts()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""Load PPA data so we can get counts for items in PPA changing as well as all of HT."""
+    )
+    return
+
+
+@app.cell
+def _(pl):
+    # load PPA work-level metadata and limit to HathiTrust content
+    ppa_ht_df = pl.read_csv("data/ppa/ppa_work_metadata.csv").filter(
+        pl.col("ppa_source").eq("HathiTrust")
+    )
+    # get the total number of unique HT volumes in PPA; use unique since a few excerpts are from the same volume
+    ppa_ht_total = ppa_ht_df["ppa_source_id"].unique().len()
+
+    ppa_ht_df
+    return ppa_ht_df, ppa_ht_total
+
+
+@app.cell
+def _(field_list, hathi_data_dir, pl, ppa_ht_df):
     import datetime
+    from polars.exceptions import NoDataError
 
     update_data = []
 
@@ -70,29 +103,45 @@ def _(field_list, hathi_data_dir, pl):
         update_date_str = update_file.stem.rsplit("_")[-1].replace(".txt", "")
         update_date = datetime.datetime.strptime(update_date_str, "%Y%m%d").date()
 
-        update_df = (
-            pl.scan_csv(
-                update_file,
-                has_header=False,
-                new_columns=field_list,
-                schema_overrides={"imprint": pl.datatypes.String},
-                separator="\t",
-                ignore_errors=True,
+        # at least one file is actually empty; handle the error and skip
+        try:
+            update_df = (
+                pl.scan_csv(
+                    update_file,
+                    has_header=False,
+                    new_columns=field_list,
+                    separator="\t",
+                    quote_char=None,  # do not treat " as escape character, since it is used in smoe content
+                    encoding="utf8",
+                )
+                .select(["htid"])  # , "access", "rights", "collection_code"])
+                .collect()
             )
-            .select(["htid"])  # , "access", "rights", "collection_code"])
-            .collect()
-        )
+            # join with ppa data so we can count # ppa volumes that changed
+            ppa_updates_df = update_df.join(
+                ppa_ht_df, left_on="htid", right_on="ppa_source_id", how="inner"
+            )
 
-        update_data.append({"date": update_date, "num_updated": update_df.height})
+            update_data.append(
+                {
+                    "date": update_date,
+                    "num_updated": update_df.height,
+                    "ppa_updated": ppa_updates_df.height,
+                }
+            )
+        except NoDataError as err:
+            print(f"Error parsing {update_file.name} : {err}")
     return datetime, update_data
 
 
 @app.cell
-def _(pl, total_ht_vols, update_data):
+def _(pl, ppa_ht_total, total_ht_vols, update_data):
     update_data_df = pl.from_dicts(update_data)
     update_data_df = (
+        # calculate percentages for all of hathitrust and then all of ppa
         update_data_df.with_columns(
-            pct_updated=pl.col("num_updated").truediv(total_ht_vols)
+            pct_updated=pl.col("num_updated").truediv(total_ht_vols),
+            pct_ppa_updated=pl.col("ppa_updated").truediv(ppa_ht_total),
         )
         .cast({"date": pl.Date})
         .sort("date")
@@ -112,27 +161,74 @@ def _(update_data_df):
 def _(update_data_df):
     import altair as alt
 
+    # get date range for the data
+    earliest = update_data_df["date"].min()
+    latest = update_data_df["date"].max()
+
     num_chart = (
         alt.Chart(update_data_df)
         .mark_bar(width=10)
         .encode(
-            x=alt.X("date", title=""), y=alt.Y("num_updated", title="# updated")
+            x=alt.X("date", title="").axis(format="%B %d", tickCount="week"),
+            y=alt.Y("num_updated", title="# updated"),
         )
-    ).properties(width=500)
+    ).properties(width=840, height=200)
 
     pct_chart = (
-        num_chart.mark_bar(width=10, color="orange")
+        num_chart.mark_bar(width=10, color="#ff7f0e")
         .encode(
-            x=alt.X("date", title="Date"),
+            x=alt.X("date", title="Date").axis(format="%B %d", tickCount="week"),
             y=alt.Y("pct_updated", title="% updated"),
         )
         .properties(height=100)
     )
-    combined_chart = (num_chart & pct_chart).properties(
-        title="HathiTrust updated items, June 2025"
+
+    combined_chart = (
+        (num_chart & pct_chart)
+        .properties(
+            title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+        )
+        .resolve_scale(x="shared")
     )
     combined_chart.save("figures/hathitrust_changes.pdf")
     combined_chart
+    return alt, combined_chart, earliest, latest, num_chart
+
+
+@app.cell
+def _(alt, combined_chart, earliest, latest, num_chart, update_data_df):
+    # ppa charts equivalent to above
+
+    ppa_num_chart = (
+        alt.Chart(update_data_df)
+        .mark_bar(width=10, color="#f05b69")
+        .encode(
+            x=alt.X("date", title="").axis(format="%B %d", tickCount="week"),
+            y=alt.Y("ppa_updated", title="# volumes updated"),
+        )
+        .properties(height=100)
+    )
+    ppa_num_chart
+
+
+    ppa_pct_chart = (
+        num_chart.mark_bar(width=10, color="#57c4c4")
+        .encode(
+            x=alt.X("date", title="Date").axis(format="%B %d", tickCount="week"),
+            y=alt.Y("pct_ppa_updated", title="% updated"),
+        )
+        .properties(height=100)
+    )
+
+    ppa_combined_chart = (
+        (ppa_num_chart & ppa_pct_chart)
+        .properties(
+            title=f"Updates to PPA volumes in HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+        )
+        .resolve_scale(x="shared")
+    )
+    combined_chart.save("figures/ppa_hathitrust_changes.pdf")
+    ppa_combined_chart
     return
 
 
