@@ -1,0 +1,5 @@
+*.egg-info/
+
+# don't add hathi update files to git
+data/hathi/updates/*.json
+data/hathi/updates/*.txt.gz
