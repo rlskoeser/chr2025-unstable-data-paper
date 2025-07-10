@@ -174,7 +174,7 @@ def _(update_data_df):
             ),  # suppress labels since will be combined
             y=alt.Y("num_updated", title="# updated"),
         )
-    ).properties(width=840, height=200)
+    ).properties(width=840, height=100)
 
     pct_chart = (
         num_chart.mark_bar(width=10, color="#ff7f0e")
