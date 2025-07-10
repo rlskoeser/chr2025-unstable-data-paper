@@ -28,11 +28,11 @@ def _(field_list, hathi_data_dir, pl):
 
     df = (
         pl.scan_csv(
-            hathi_data_dir / "hathi_full_20250701.txt",  # .gz",
+            hathi_data_dir / "hathi_full_20250701.txt.gz",
             has_header=False,
             new_columns=field_list,
             separator="\t",
-            quote_char=None,  # do not treat " as escape character, since it is used in smoe content
+            quote_char=None,  # do not treat " as escape character, since it is used in some content
             encoding="utf8",
         )
         .select(
@@ -192,11 +192,11 @@ def _(update_data_df):
     )
     combined_chart.save("figures/hathitrust_changes.pdf")
     combined_chart
-    return alt, combined_chart, earliest, latest, num_chart
+    return alt, earliest, latest, num_chart
 
 
 @app.cell
-def _(alt, combined_chart, earliest, latest, num_chart, update_data_df):
+def _(alt, earliest, latest, num_chart, update_data_df):
     # ppa charts equivalent to above
 
     ppa_num_chart = (
@@ -227,7 +227,7 @@ def _(alt, combined_chart, earliest, latest, num_chart, update_data_df):
         )
         .resolve_scale(x="shared")
     )
-    combined_chart.save("figures/ppa_hathitrust_changes.pdf")
+    ppa_combined_chart.save("figures/ppa_hathitrust_changes.pdf")
     ppa_combined_chart
     return
 
