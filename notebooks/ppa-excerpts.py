@@ -62,7 +62,15 @@ def _(changed, pl):
     # parse new and old digital page range with int span so we can compare
     changed_pages = (
         changed.filter(pl.col("new digital range").ne("SUPPRESS"))
-        .select("pages_orig", "pages_digital", "new digital range", "page_count")
+        .select(
+            "source_url",
+            "title",
+            "author",
+            "pages_orig",
+            "pages_digital",
+            "new digital range",
+            "page_count",
+        )
         .with_columns(
             pl.col("pages_digital")
             .map_elements(lambda x: intspan(x), return_dtype=object)
@@ -126,36 +134,32 @@ def _(changed, pl):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(
-        r"""For a few excerpts, the number of pages included in the excerpt changed."""
+        r"""
+    For a few excerpts, the number of pages included in the excerpt changed.
+
+    There are a couple of outliers with very large changes (25 and 16 page differences); omit them for reporting, since they are likely due to data errors in the original excerpt.
+    """
     )
     return
 
 
 @app.cell
 def _(changed_pages, pl):
-    page_count_changed = changed_pages.filter(pl.col("page_count_diff").ne(0))
+    page_count_changed = changed_pages.filter(
+        pl.col("page_count_diff").ne(0)
+    ).filter(pl.col("page_count_diff").lt(15))
     page_count_changed["page_count_diff"].describe()
     return (page_count_changed,)
 
 
 @app.cell
-def _(page_count_changed):
-    print(
+def _(mo, page_count_changed):
+    mo.md(
         ", ".join(
             [str(n) for n in page_count_changed["page_count_diff"].to_list()]
         )
     )
     return
-
-
-@app.cell
-def _(page_count_changed):
-    import altair as alt
-
-    alt.Chart(page_count_changed).mark_bar(width=10).encode(
-        x=alt.X("page_count_diff"), y="count()"
-    )
-    return (alt,)
 
 
 @app.cell
@@ -185,9 +189,40 @@ def _(changed_pages):
 
 
 @app.cell
-def _(alt, changed_pages):
+def _(changed_pages):
+    import altair as alt
+
     alt.Chart(changed_pages).mark_bar(width=10).encode(
         x=alt.X("start_page_diff", title="Difference in start pages"), y="count()"
+    )
+    return (alt,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""Maybe a box plot will be an easier way to show the distribution of changes."""
+    )
+    return
+
+
+@app.cell
+def _(alt, changed_pages):
+    alt.Chart(changed_pages).mark_boxplot().encode(
+        alt.X("start_page_diff", title="Difference in start pages")
+    )
+    return
+
+
+@app.cell
+def _(alt, changed_pages, pl):
+    alt.Chart(
+        changed_pages.filter(pl.col("start_page_diff").lt(100))
+    ).mark_boxplot().encode(
+        alt.X(
+            "start_page_diff",
+            title="Difference in start pages (240 page difference excluded)",
+        )
     )
     return
 
@@ -202,6 +237,32 @@ def _(changed_pages, mo):
     - The average change was {changed_pages["start_page_diff"].mean():.1f} pages.
     - The most common change was {changed_pages["start_page_diff"].mode().first()} pages.
     """
+    )
+    return
+
+
+@app.cell
+def _(changed_pages, pl):
+    changed_pages.filter(pl.col("start_page_diff").gt(10))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""Nine volumes have a difference of more than 10 pages.""")
+    return
+
+
+@app.cell
+def _(changed_pages, pl):
+    changed_pages.filter(pl.col("start_page_diff").gt(20))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""Five volumes have a difference of more than 20 pages; one has a difference of 240."""
     )
     return
 
@@ -228,6 +289,19 @@ def _(alt, changed_pages):
             title="Number of pages in common between new and old digital page range",
         ),
         y="count()",
+    )
+    return
+
+
+@app.cell
+def _(alt, changed_pages):
+    alt.Chart(changed_pages).mark_boxplot().encode(
+        x=alt.X(
+            "num_common_pages",
+            title="# pages in common",
+        )
+    ).properties(
+        title="Number of pages in common between new and old digital page range"
     )
     return
 
