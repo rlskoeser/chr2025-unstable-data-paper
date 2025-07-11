@@ -167,33 +167,59 @@ def _(update_data_df):
 
     num_chart = (
         alt.Chart(update_data_df)
-        .mark_bar(width=10)
+        .mark_bar(width=10, color="#4661ac")
         .encode(
             x=alt.X("date", title="").axis(
-                labels=False, tickCount="week"
+                format="%B %d", tickCount="week"
             ),  # suppress labels since will be combined
             y=alt.Y("num_updated", title="# updated"),
         )
-    ).properties(width=840, height=100)
+    ).properties(
+        width=840,
+        height=100,
+        title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
+    )
 
+
+    # can we set y-domain to force the axes to align?
     pct_chart = (
-        num_chart.mark_bar(width=10, color="#ff7f0e")
+        num_chart.mark_bar(width=10, color="#ff7f0e", opacity=0.5)
         .encode(
             x=alt.X("date", title="Date").axis(format="%B %d", tickCount="week"),
             y=alt.Y("pct_updated", title="% updated"),
         )
-        .properties(height=100)
+        .properties(
+            height=100,
+        )
     )
 
-    combined_chart = (
-        (num_chart & pct_chart)
-        .properties(
-            title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
-        )
-        .resolve_scale(x="shared")
-    )
-    combined_chart.save("figures/hathitrust_changes.pdf")
-    combined_chart
+
+    #     )
+
+    num_chart.save("figures/hathitrust_changes_countonly.pdf")
+
+    num_chart
+    # can we combine and fix the scale so % is one side and count is the other?
+    # right now they don't match exactly
+    # combined_chart = (
+    #     (num_chart + pct_chart)
+    #     .properties(
+    #         title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+    #     )
+    #     .resolve_scale(x="shared", y="independent")
+    # )
+
+
+    # combined_chart = (
+    #     (num_chart & pct_chart)
+    #     .properties(
+    #         title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+    #     )
+    #     .resolve_scale(x="shared")
+    # )
+    # combined_chart.save("figures/hathitrust_changes.pdf")
+
+    # combined_chart
     return alt, earliest, latest, num_chart
 
 
@@ -206,13 +232,16 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         .mark_bar(width=10, color="#f05b69")
         .encode(
             x=alt.X("date", title="").axis(
-                labels=False, tickCount="week"
+                format="%B %d",
+                tickCount="week",  # labels=False to suppress for combination
             ),  # suppress labels since displayed together
             y=alt.Y("ppa_updated", title="# volumes updated"),
         )
-        .properties(height=100)
+        .properties(
+            height=100,
+            title=f"Updates to PPA volumes in HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
+        )
     )
-    ppa_num_chart
 
 
     ppa_pct_chart = (
@@ -231,8 +260,16 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         )
         .resolve_scale(x="shared")
     )
-    ppa_combined_chart.save("figures/ppa_hathitrust_changes.pdf")
+    # ppa_combined_chart.save("figures/ppa_hathitrust_changes.pdf")
     ppa_combined_chart
+    return (ppa_num_chart,)
+
+
+@app.cell
+def _(ppa_num_chart):
+    # num_chart.save("figures/hathitrust_changes_countonly.pdf")
+    ppa_num_chart.save("figures/ppa_hathitrust_changes_countonly.pdf")
+    ppa_num_chart
     return
 
 
