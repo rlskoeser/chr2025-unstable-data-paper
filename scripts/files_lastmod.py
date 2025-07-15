@@ -6,19 +6,25 @@ import datetime
 import pathlib
 import os
 
-def main(dir, ext, output):
+def main(basedir, ext, output):
     extensions = ext.split(',')
     with output.open('w') as csvfile:
         fieldnames = ['filename', 'mtime', 'last_modified']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        for (dir, _dirnames, filenames) in os.walk(dir):
+        # use os.walk so this can run under python 3.11
+        for (dir, _dirnames, filenames) in os.walk(basedir):
             dir_path = pathlib.Path(dir)
             for file in filenames:
                 file_path = dir_path / file
                 if file_path.is_file() and file_path.suffix.lstrip('.') in extensions:
                     mod_time = file_path.stat().st_mtime
-                    writer.writerow({'filename': file_path.name, 'mtime': mod_time, 'last_modified': datetime.datetime.fromtimestamp(mod_time)})
+                    # include the full filename, because we need the prefix to convert filename to HTID
+                    writer.writerow({
+                        'filename': str(file_path.relative_to(basedir)),
+                        'mtime': mod_time,
+                        'last_modified': datetime.datetime.fromtimestamp(mod_time)
+                    })
 
 
 if __name__ == "__main__":
