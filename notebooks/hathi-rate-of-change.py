@@ -169,7 +169,7 @@ def _(update_data_df):
         alt.Chart(update_data_df)
         .mark_bar(width=10, color="#4661ac")
         .encode(
-            x=alt.X("date", title="").axis(
+            x=alt.X("date", title="Date").axis(
                 format="%B %d", tickCount="week"
             ),  # suppress labels since will be combined
             y=alt.Y("num_updated", title="# updated"),
@@ -177,7 +177,7 @@ def _(update_data_df):
     ).properties(
         width=840,
         height=100,
-        title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
+        # title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
     )
 
 
@@ -224,6 +224,41 @@ def _(update_data_df):
 
 
 @app.cell
+def _(earliest, latest):
+    f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""What is the largest number of updates in a single day during this time period?"""
+    )
+    return
+
+
+@app.cell
+def _(update_data_df):
+    update_data_df.sort("num_updated", descending=True).head(5)
+    return
+
+
+@app.cell
+def _(mo, update_data_df):
+    max_update = update_data_df.sort("num_updated", descending=True).row(
+        0, named=True
+    )
+
+    max_num_updated = max_update["num_updated"]
+    max_pct_updated = max_update["pct_updated"]
+    max_updates_day = max_update["date"]
+    mo.md(
+        f"Largest number updated: {max_num_updated:,} ({max_pct_updated * 100:.1f}%) on {max_updates_day}"
+    )
+    return
+
+
+@app.cell
 def _(alt, earliest, latest, num_chart, update_data_df):
     # ppa charts equivalent to above
 
@@ -239,7 +274,8 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         )
         .properties(
             height=100,
-            title=f"Updates to PPA volumes in HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
+            width=840,
+            # title=f"Updates to PPA volumes in HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
         )
     )
 
@@ -266,10 +302,32 @@ def _(alt, earliest, latest, num_chart, update_data_df):
 
 
 @app.cell
+def _():
+    return
+
+
+@app.cell
 def _(ppa_num_chart):
     # num_chart.save("figures/hathitrust_changes_countonly.pdf")
     ppa_num_chart.save("figures/ppa_hathitrust_changes_countonly.pdf")
     ppa_num_chart
+    return
+
+
+@app.cell
+def _(alt, earliest, latest, num_chart, ppa_num_chart):
+    ppa_ht_numchart = (
+        alt.vconcat(ppa_num_chart, num_chart)
+        .resolve_axis(x="shared")
+        .properties(
+            title=f"Updates to PPA HathiTrust volumes and all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+        )
+    )
+
+    # saving this chart fails for smoe reason
+    # ppa_ht_numchart.save("figures/ppa_and_hathitrust_changes.pdf")
+
+    ppa_ht_numchart
     return
 
 
