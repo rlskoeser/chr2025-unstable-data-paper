@@ -235,7 +235,7 @@ def _(pathlib, pl):
 @app.cell
 def _(lastmod_df, lastmod_mets_df, lastmod_text_df, mo):
     mo.md(
-        f"{lastmod_df.height:,} total rows; {lastmod_mets_df.height:,} METS xml files, {lastmod_text_df.height:,} ZIP files (text)"
+        f"""{lastmod_df.height:,} total rows; {lastmod_mets_df.height:,} METS xml files, {lastmod_text_df.height:,} ZIP files (text)"""
     )
     return
 
@@ -252,7 +252,7 @@ def _(alt, lastmod_mets_df):
             ),
             y=alt.Y("count()", title="Number of records"),
         )
-        .properties(height=150)
+        .properties(height=100, width=840)
     )
 
 
