@@ -10,7 +10,8 @@ def _():
 
     import marimo as mo
     import polars as pl
-    return mo, pathlib, pl
+    import altair as alt
+    return alt, mo, pathlib, pl
 
 
 @app.cell(hide_code=True)
@@ -181,9 +182,120 @@ def _(mo, pagetext_join, pl, total_ht_pages_frozen):
     mo.md(f"""{total_shared_pagetext:,} pages with exactly matching text in both versions
 
     {total_pagetext_id_eq:,}  pages with matching text have unchanged page ids — {(total_pagetext_id_eq / total_shared_pagetext) * 100:.1f}% of this set; {(total_pagetext_id_eq / total_ht_pages_frozen) * 100:.1f}% of frozen corpus
-    
+
     for {total_shared_pagetext - total_pagetext_id_eq:,} pages ({((total_shared_pagetext - total_pagetext_id_eq) / total_shared_pagetext) * 100:.1f}%) the id has changed
     """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""### When was PPA data from HathiTrust last modified""")
+    return
+
+
+@app.cell
+def _(pathlib, pl):
+    from pairtree import path2id
+
+
+    def path_to_htid(filepath):
+        filepath = pathlib.Path(filepath)
+        prefix = filepath.parts[0]
+        return f"{prefix}.{path2id(filepath.stem.rsplit('.')[0])}"
+
+
+    def path_suffixes(filepath):
+        filepath = pathlib.Path(filepath)
+        return "".join(filepath.suffixes)
+
+
+    lastmod_df = pl.read_csv(
+        "data/ppa/ppa_htfiles_lastmod.csv",
+        schema_overrides={"last_modified": pl.datatypes.Datetime},
+    ).with_columns(
+        last_mod_day=pl.col("last_modified").cast(pl.datatypes.Date),
+        htid=pl.col("filename").map_elements(
+            path_to_htid, return_dtype=pl.datatypes.String
+        ),
+        file_type=pl.col("filename").map_elements(
+            path_suffixes, return_dtype=pl.datatypes.String
+        ),
+    )
+
+
+    lastmod_mets_df = lastmod_df.filter(pl.col("file_type").eq(".mets.xml"))
+    lastmod_text_df = lastmod_df.filter(pl.col("file_type").eq(".zip"))
+
+
+    lastmod_df.head(10)
+    return lastmod_df, lastmod_mets_df, lastmod_text_df
+
+
+@app.cell
+def _(lastmod_df, lastmod_mets_df, lastmod_text_df, mo):
+    mo.md(
+        f"{lastmod_df.height:,} total rows; {lastmod_mets_df.height:,} METS xml files, {lastmod_text_df.height:,} ZIP files (text)"
+    )
+    return
+
+
+@app.cell
+def _(alt, lastmod_mets_df):
+    # filter to just the METS since that corresponds to volume update time
+    ppa_lastmod_chart = (
+        alt.Chart(lastmod_mets_df)
+        .mark_bar(width=10, color="#57c4c4")
+        .encode(
+            x=alt.X("last_mod_day:T", title="Date last modified").axis(
+                tickCount="year"
+            ),
+            y=alt.Y("count()", title="Number of records"),
+        )
+        .properties(height=150)
+    )
+
+
+    ppa_lastmod_chart.save("figures/ppa_hathitrust_lastmodified.pdf")
+    ppa_lastmod_chart
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""How many volumes last modified in 2024?""")
+    return
+
+
+@app.cell
+def _(lastmod_mets_df, pl):
+    lastmod_mets_df.filter(pl.col("last_mod_day").gt(pl.datetime(2024, 1, 1)))
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""What is the most recent last modified time in this set of files?""")
+    return
+
+
+@app.cell
+def _(lastmod_mets_df):
+    lastmod_mets_df.sort("last_modified", descending=True)
+    return
+
+
+@app.cell
+def _(lastmod_mets_df, mo):
+    most_recent = lastmod_mets_df.sort("last_modified", descending=True).row(
+        0, named=True
+    )
+    mo.md(f"Most recently modified file: {most_recent['last_modified']}")
+    return
+
+
+@app.cell
+def _():
     return
 
 
