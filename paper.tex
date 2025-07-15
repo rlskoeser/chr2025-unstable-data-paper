@@ -144,17 +144,34 @@ A spreadsheet from November 2023 to correct the page ranges for PPA excerpts fro
 
 \subsection{Changes in all of HathiTrust}
 
-This led us to wonder about the rate of change happening in the PPA more generally and in HathiTrust at scale. The following graph shows the rate of change across all of HathiTrust from May 1 to July 10, 2025.
-\begin{figure}
+Observing this volatility at the small scale of PPA excerpts led us to wonder about the rate of change for  PPA content more generally and in HathiTrust at scale. Fortunately for us, HathiTrust is incredibly transparent and publishes monthly and daily files with data about updated records, including a list of the reasons a volume might be included, whether newly deposited, a new copy of an existing item, changes to rights and access permission, or an update to the bibliographic metadata \cite{noauthor_hathifiles_nodate} .  Figure \ref{fig:hathi-daily-updates} charts the number of updated volumes across all of HathiTrust from May 1 to July 10, 2025.
+\begin{figure}[t!]
     \centering
     \includegraphics[width=1\linewidth]{figures/hathitrust_changes_countonly.pdf}
-    \label{fig:hathi-bar-chart}
+    \caption{Number of volumes updated daily in all of HathiTrust from May 1 to July 10, 2025.}
+    \label{fig:hathi-daily-updates}
 \end{figure}
-As you can see, the number of updates varies on any given day from nearly negligible to more than 800,000 volumes. The day with the most updates during this time period was May 15, 2025 with 846,329 volumes updated (4.5\% of all HathiTrust).  However, at HathiTrust’s scale of 18+ million volumes, the changes constitute less than 1\% of the total collection. 
+The number of updates varies on any given day from nearly negligible to more than 800,000 volumes. The day with the most updates during this time period was May 15, 2025 with 846,329 volumes updated (4.5\% of all HathiTrust).  However, at HathiTrust’s scale of 18+ million volumes, the changes constitute less than 1\% of the total collection. 
 
 \subsection{Changes in all of the PPA}
 
-What about all the HathiTrust volumes within the Princeton Prosody Archive? How frequently are they changing? To answer this question, we compared two different snapshots of the PPA full-text corpus: one from 2025-02-03 (when did we last run rsync for this one?), and the other from 2025-02-19, a difference of roughly two weeks. Within this time frame, close to half of our pages (44.2\%) changed after joining on page ID (work ID + digital page sequence number). Another way of looking at the rate of change within the PPA corpus involves joining the matching text within a volume to see whether page ID has changed. Via this method, 855,930 pages have exactly matching text in both versions. For just 14,423 of those pages (1.7\%), the page id has changed. This is the set of pages where the digital sequence has changed without OCR changes. For the remaining \~half a million (is this right?) pages in the set, those mismatches can likely be attributed to OCR changes.
+What about all the HathiTrust volumes within the Princeton Prosody Archive? How frequently are they changing? One way to answer this question is to filter the data on HathiTrust updates to volumes included in PPA; when we do, we find that PPA updates track somewhat with the larger updates (refer to Figure \ref{fig:ppa-daily-updates} and compare with Figure \ref{fig:hathi-daily-updates}). Although these changes are on a much smaller scale, there are still multiple days when more than a hundred volumes changed within this time period.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/ppa_hathitrust_changes_countonly.pdf}
+    \caption{Number of PPA volumes updated daily in all of HathiTrust from May 1 to July 10, 2025.}
+    \label{fig:ppa-daily-updates}
+\end{figure}
+
+To answer this question, we compared two different snapshots of the PPA full-text corpus: one from 2025-02-03 (when did we last run rsync for this one?), and the other from 2025-02-19, a difference of roughly two weeks. Within this time frame, close to half of our pages (44.2\%) changed after joining on page ID (work ID + digital page sequence number). Another way of looking at the rate of change within the PPA corpus involves joining the matching text within a volume to see whether page ID has changed. Via this method, 855,930 pages have exactly matching text in both versions. For just 14,423 of those pages (1.7\%), the page id has changed. This is the set of pages where the digital sequence has changed without OCR changes. For the remaining \~half a million (is this right?) pages in the set, those mismatches can likely be attributed to OCR changes.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/ppa_hathitrust_lastmodified.pdf}
+    \caption{Last modification date of PPA content files.}
+    \label{fig:ppa-last-modified}
+\end{figure}
 
 \subsection{Implications}
 
