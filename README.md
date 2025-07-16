@@ -12,13 +12,21 @@ Developed with Python 3.12; we recommend the use of a python virtual environment
 pip install .
 ```
 
+For a complete install with [uv](https://docs.astral.sh/uv/):
+
+```sh
+uv venv
+uv pip install .
+uv run marimo edit notebook/[filename].py
+```
+
 ## Notebooks
 
 Notebooks are written with [Marimo](https://marimo.io/). To run them, use `marimo run` with the path to the notebook.
 They should be run from the top level of the repository for access to the `data/` directory.
 
 ```sh
-marimo run notebook/[filename].py
+marimo run edit notebook/[filename].py
 ```
 
 Static snapshots of the notebooks are available as [Jupyter notebooks](notebooks/__marimo__/).
