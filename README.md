@@ -1,18 +1,34 @@
 # CHR2025 unstable data paper
 
-Code, data, and LaTex for CHR2025 short paper.
+Code, data, and LaTeX for CHR2025 short paper.
 
 ## Installation
 
-Python dependencies are specified in `pyproject.toml`; use `pip`, `uv pip`, or similar to install them:
+Python dependencies are specified in `pyproject.toml`; use `pip`, `uv pip`, or similar to install them.
+
+Developed with Python 3.12; we recommend the use of a python virtual environment.
 
 ```bash
 pip install .
 ```
 
-Developed with Python 3.12.
+## Notebooks
 
-## HathiTrust update data
+Notebooks are written with [Marimo](https://marimo.io/). To run them, use `marimo run` with the path to the notebook.
+They should be run from the top level of the repository for access to the `data/` directory.
+
+```sh
+marimo run notebook/[filename].py
+```
+
+Static snapshots of the notebooks are available as [Jupyter notebooks](notebooks/__marimo__/).
+
+## Data
+
+Where possible, the data used for analysis is included in this repository. In some cases, data cannot be shared
+or is too large to redistribute here.
+
+### HathiTrust update data
 
 HathiTrust update data used for analysis were downloaded from:
 https://www.hathitrust.org/member-libraries/resources-for-librarians/data-resources/hathifiles/
@@ -24,3 +40,16 @@ To download a copy, use the script provided: `python ./scripts/get_hathi_update_
 Files will be saved in `data/hath/updates/`.
 
 A copy of the hathi file list at the time of writing is included at `data/hathi/_hathi_file_list.json`.
+
+### Page-level genre predictions for HathiTrust data
+
+Analysis based on:
+
+> Underwood, Ted (2014). Page-Level Genre Metadata for English-Language Volumes in HathiTrust, 1700-1922. figshare. Dataset. https://doi.org/10.6084/m9.figshare.1279201.v1
+
+To run the page-level analysis notebook, download the full zip file and expand it in the `data/` directory.
+
+### PPA full-text corpora
+
+Due to restrictions on the content included in PPA, these cannot be shared publicy. The PPA team hopes to publish a
+dataset of these corpora soon, but even then we expect the data will be embargoed.
