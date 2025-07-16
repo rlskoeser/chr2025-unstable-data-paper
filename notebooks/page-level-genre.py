@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.14.10"
-app = marimo.App(width="medium")
+app = marimo.App(width="medium", auto_download=["ipynb"])
 
 
 @app.cell
@@ -9,6 +9,34 @@ def _():
     import marimo as mo
     import polars as pl
     return mo, pl
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    # HathiTrust page-level genre predictions and PPA
+
+    This analysis is based on:
+
+    > Underwood, Ted (2014). Page-Level Genre Metadata for English-Language Volumes in HathiTrust, 1700-1922. figshare. Dataset. https://doi.org/10.6084/m9.figshare.1279201.v1
+
+    To replicate this analysis, download the full zip file and expand it in the `data/` directory.
+    """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    ## Identify overlap between page-level genre volumes and PPA
+
+    First, we need to find which PPA volumes are included in this dataset.
+    """
+    )
+    return
 
 
 @app.cell
@@ -36,9 +64,7 @@ def _(pl):
     from zipfile import ZipFile
 
     genre_all_meta_df = pl.read_csv(
-        ZipFile("/Users/rkoeser/Downloads/1279201/allmeta.csv.zip").read(
-            "allmeta.csv"
-        ),
+        ZipFile("data/1279201/allmeta.csv.zip").read("allmeta.csv"),
         infer_schema_length=10000,
         ignore_errors=True,
     )
@@ -80,6 +106,9 @@ def _(mo):
         r"""
     ## Test cases
 
+    Based on the documented overlap between the datasets, we identified three test cases that would be interesting and helpful to look at.
+
+
     ```
     njp.32101068158847-p223 – excerpt didn’t change
     Each page has some poetry on it (OG 223-228, digital 267-272)
@@ -103,15 +132,22 @@ def _(mo):
     Lots of poetry interspersed throughout with prose
     Section toward the end with just poems
     ```
-
     """
     )
     return
 
 
 @app.cell
+def _(mo):
+    mo.md(
+        r"""To determine which data file of page-level genre predictions to look at, we need to know when our test cases were published.  It turns out that they are all 1700s, so we can find predictions for all of them in a single data file of the page-level genre dataset."""
+    )
+    return
+
+
+@app.cell
 def _(pl, ppa_ht_df):
-    # these the ppa work ids for three test cases of interest
+    # ppa work ids for three test cases of interest
     test_cases = [
         "njp.32101068158847-p223",
         "njp.32101076530979-p482",
@@ -132,7 +168,7 @@ def _(ppa_test_cases):
     import pathlib
     import json
 
-    genre_data_dir = pathlib.Path("/Users/rkoeser/Downloads/1279201")
+    genre_data_dir = pathlib.Path("data/1279201")
     all1700_dir = genre_data_dir / "all" / "1700-99"
 
     genre_data_by_work = {}
@@ -292,7 +328,7 @@ def _(mo):
         r"""
     When we look at the pages in range for this excerpt, we see only two pages predicted with the genre of poetry (510 and 511).
 
-    I would guess that these correspond to the two pages that are all or almost all poetry (515 and 516 in our enumeration), but I'm not sure if there's any way to be sure.
+    We suspect that these correspond to the two pages that are all or almost all poetry (515 and 516 in our enumeration), but we're not sure if there's any way to be sure.
     """
     )
     return

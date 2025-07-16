@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.14.10"
-app = marimo.App(width="medium")
+app = marimo.App(width="medium", auto_download=["ipynb"])
 
 
 @app.cell
@@ -224,8 +224,10 @@ def _(update_data_df):
 
 
 @app.cell
-def _(earliest, latest):
-    f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+def _(earliest, latest, mo):
+    mo.md(
+        f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
+    )
     return
 
 
@@ -254,6 +256,22 @@ def _(mo, update_data_df):
     max_updates_day = max_update["date"]
     mo.md(
         f"Largest number updated: {max_num_updated:,} ({max_pct_updated * 100:.1f}%) on {max_updates_day}"
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""What is the average daily change across this time period?""")
+    return
+
+
+@app.cell
+def _(mo, update_data_df):
+    avg_num_updated = update_data_df["num_updated"].mean()
+    avg_pct_updated = update_data_df["pct_updated"].mean()
+    mo.md(
+        f"Average daily update for this period is {int(avg_num_updated):,} ({avg_pct_updated * 100:.1f}%)"
     )
     return
 
