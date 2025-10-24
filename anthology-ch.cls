@@ -6,6 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % WORK OFF OF THE BASE ARTICLE CLASS
 \LoadClass[11pt]{article}
+\AtBeginDocument{%
+  \emergencystretch 2em
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LOAD ALL REQUIRED PACKAGES HERE
@@ -30,9 +33,46 @@
 \RequirePackage{kvoptions}
 %\RequirePackage{times}
 %\RequirePackage{ebgaramond}
-\RequirePackage{tinos}
+\RequirePackage{iftex}
+\ifXeTeX
+  % XeLaTeX: Use fontspec for Tinos fonts from local fonts directory
+  \RequirePackage{fontspec}
+  \setmainfont{Tinos}[
+    Path = fonts/Tinos/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+  ]
+  % Define Noto Serif for small caps (Tinos doesn't have small caps)
+  % Load from local fonts directory
+  \newfontfamily\scfallbackfont{NotoSerif}[
+    Path = fonts/Noto_Serif/static/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    Letters=SmallCaps,
+    Scale=MatchLowercase
+  ]
+  % Redefine small caps commands to use Noto Serif
+  \let\oldtextsc\textsc
+  \renewcommand{\textsc}[1]{{\scfallbackfont\oldtextsc{#1}}}
+  \DeclareRobustCommand\scshape{\scfallbackfont\addfontfeature{Letters=SmallCaps}}
+\else
+  % pdfLaTeX: Use tinos package
+  \RequirePackage{tinos}
+  \RequirePackage[T1]{fontenc}
+  % Load Latin Modern for small caps (Tinos doesn't have small caps)
+  \RequirePackage{lmodern}
+  % Redefine small caps commands to use Latin Modern
+  \let\oldtextsc\textsc
+  \renewcommand{\textsc}[1]{{\fontfamily{lmr}\selectfont\oldtextsc{#1}}}
+  \DeclareRobustCommand\scshape{\fontfamily{lmr}\selectfont\scdefault}
+\fi
 %\RequirePackage{librebaskerville}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
 \RequirePackage[hidelinks]{hyperref}
@@ -42,6 +82,12 @@
 \newif\if@final
 \@finalfalse  % Default is not draft mode
 \DeclareOption{final}{\@finaltrue}
+
+% CREATE A FRENCH LANGUAGE OPTION
+\newif\if@fra
+\@frafalse  % Default is not French mode
+\DeclareOption{fra}{\@fratrue}
+
 \ProcessOptions\relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,13 +121,38 @@
 \def\@authornames{}
 \def\@authornamesend{}
 \def\@authornamesfull{}
+\def\@correspondingauthor{}
+\def\@correspondingemail{}
+
+% Storage for author names and affiliations
+\newcommand{\@storeauthorname}[2]{\expandafter\def\csname author@name@#1\endcsname{#2}}
+\newcommand{\@storeauthoraffil}[2]{\expandafter\def\csname author@affil@#1\endcsname{#2}}
 
 \define@key{author}{orcid}{\def\@currentorcid{#1}}
-\setkeys{author}{orcid={}}
+\define@key{author}{email}{\def\@currentemail{#1}}
+\define@key{author}{corresponding}[true]{\def\@currentcorresponding{#1}}
+\setkeys{author}{orcid={}, email={}, corresponding=false}
 
 \RenewDocumentCommand{\author}{O{} m O{}}{%
   \stepcounter{authorcount}
-  \setkeys{author}{#3}  
+  \setkeys{author}{#3}
+
+  % Store the current ORCID ID, email, name, and affiliation for this specific author
+  \expandafter\edef\csname author@orcid@\arabic{authorcount}\endcsname{\@currentorcid}
+  \expandafter\edef\csname author@email@\arabic{authorcount}\endcsname{\@currentemail}
+  \@storeauthorname{\arabic{authorcount}}{#2}
+  \@storeauthoraffil{\arabic{authorcount}}{#1}
+
+  % Check if this is the corresponding author
+  \ifx\@currentcorresponding\@empty\else
+    \def\@temp{true}%
+    \ifx\@currentcorresponding\@temp
+      \ifx\@correspondingauthor\@empty
+        \edef\@correspondingauthor{#2}
+        \edef\@correspondingemail{\@currentemail}
+      \fi
+    \fi
+  \fi
 
   \ifnum\value{authorcount}=1
     \def\@authornames{#2}
@@ -136,7 +207,11 @@
     }
   \else
     \fancyhead[L]{
-      \textbf{\small\textcolor{newgray}{Anthology of Computers and the Humanities: Under Review}}
+      \if@fra
+        \textbf{\small\textcolor{newgray}{Anthology of Computers and the Humanities: En cours d'examen}}
+      \else
+        \textbf{\small\textcolor{newgray}{Anthology of Computers and the Humanities: Under Review}}
+      \fi
     }
   \fi
   \fancyfoot[C]{\thepage}
@@ -144,7 +219,7 @@
 
 \AtBeginDocument{%
   \thispagestyle{firstpage}
-  \suppressfloats[t] 
+  \suppressfloats[t]
   \suppressfloats[b]
 }
 
@@ -161,19 +236,51 @@
 \newcommand{\firstpagefootnote}[1]{\gdef\@firstpagefootnote{#1}}
 
 \if@final
-  \newcommand{\@firstpagefootnote}{\footnotesize\@authornamesend. ``\@title.'' In:~\textit{\@conferencename}, ed. by \@conferenceeditors. Vol. \@pubvolume. Anthology of Computers and the Humanities. \@pubyear, \@pagestart--\@pageend. \href{https://doi.org/\@doi}{\textbf{\textcolor{customlink}{https://doi.org/\@doi}}}.
+  \if@fra
+    \newcommand{\@firstpagefootnote}{\footnotesize\@authornamesend. ``\@title.''\if\relax\detokenize\expandafter{\@conferencename}\relax\else\ \textit{\@conferencename}\if\relax\detokenize\expandafter{\@conferenceeditors}\relax\else, éd. par \@conferenceeditors\fi.\fi\ Vol. \@pubvolume. Anthology of Computers et the Humanities. \@pubyear, \@pagestart--\@pageend. \href{https://doi.org/\@doi}{https://doi.org/\@doi}.
 
   \vspace{0.5em}
 
+  \ifx\@correspondingauthor\@empty\else
+  \noindent
+  Corresponding author: \@correspondingauthor\ (\href{mailto:\@correspondingemail}{\@correspondingemail})
+
+  \vspace{0.5em}
+  \fi
+
+  \noindent
+  \textcolor{newgray}{© 2025 par les auteurs. Sous licence \href{https://creativecommons.org/licenses/by/4.0/deed.fr}{Creative Commons Attribution 4.0 International (CC BY 4.0).}}}
+  \else
+    \newcommand{\@firstpagefootnote}{\footnotesize\@authornamesend. ``\@title.''\if\relax\detokenize\expandafter{\@conferencename}\relax\else\ In:~\textit{\@conferencename}\if\relax\detokenize\expandafter{\@conferenceeditors}\relax\else, ed. by \@conferenceeditors\fi.\fi\ Vol. \@pubvolume. Anthology of Computers and the Humanities. \@pubyear, \@pagestart--\@pageend. \href{https://doi.org/\@doi}{https://doi.org/\@doi}.
+
+  \vspace{0.5em}
+
+  \ifx\@correspondingauthor\@empty\else
+  \noindent
+  Corresponding author: \@correspondingauthor\ (\href{mailto:\@correspondingemail}{\@correspondingemail})
+
+  \vspace{0.5em}
+  \fi
+
   \noindent
   \textcolor{newgray}{© 2025 by the authors. Licensed under \href{https://creativecommons.org/licenses/by/4.0}{Creative Commons Attribution 4.0 International (CC BY 4.0).}}}
+  \fi
 \else
-  \newcommand{\@firstpagefootnote}{Paper under review.
+  \if@fra
+    \newcommand{\@firstpagefootnote}{L'article en cours d'examen.
+
+  \vspace{0.5em}
+
+  \noindent
+  \textcolor{newgray}{© 2025 par les auteurs. Sous licence \href{https://creativecommons.org/licenses/by/4.0/deed.fr}{Creative Commons Attribution 4.0 International (CC BY 4.0).}}}
+  \else
+    \newcommand{\@firstpagefootnote}{Paper under review.
 
   \vspace{0.5em}
 
   \noindent
   \textcolor{newgray}{© 2025 by the authors. Licensed under \href{https://creativecommons.org/licenses/by/4.0}{Creative Commons Attribution 4.0 International (CC BY 4.0).}}}
+  \fi
 \fi
 
 
@@ -196,14 +303,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DEFINE THE ABSTRACT ENVIRONMENT
 \renewenvironment{abstract}{%
-  \normalsize 
+  \normalsize
   \begin{center}
-    \bfseries Abstract
+    \if@fra
+      \bfseries Résumé
+    \else
+      \bfseries Abstract
+    \fi
   \end{center}
   \small
   \quotation\par\noindent\ignorespaces
 }{
-  {\\\\\textbf{Keywords:} \@keywords}
+  \if@fra
+    {\\\\\textbf{Mots-clés:} \@keywords}
+  \else
+    {\\\\\textbf{Keywords:} \@keywords}
+  \fi
   \endquotation
   \vspace{1em}
 }
@@ -230,6 +345,18 @@
   {\normalfont\normalsize\itshape}
 }
 
+\newcommand{\@expandauthor}[1]{%
+  \expandafter\ifx\csname author@orcid@#1\endcsname\relax
+    \expandafter\ifx\csname author@email@#1\endcsname\relax
+      #1%
+    \else
+      #1%
+    \fi
+  \else
+    #1%
+  \fi
+}
+
 \renewcommand{\maketitle}{%
   \begin{center}
     {\LARGE \bfseries \@title \par}
@@ -237,17 +364,53 @@
     \if@final
         {\large
           \begingroup
-            \@authornamesfull
+            \@buildauthornamescorrectly
           \endgroup
         \par}
         \vspace{0.5em}
         \small
         \@affillist
     \else
-        {\large Anonymous Submission}
+        \if@fra
+          {\large Soumission anonyme}
+        \else
+          {\large Anonymous Submission}
+        \fi
         \vspace{0.5em}
     \fi
   \end{center}
+}
+
+\newcounter{@tempcnta}
+\newcommand{\@buildauthornamescorrectly}{%
+  \setcounter{@tempcnta}{1}%
+  \@buildauthorloop
+}
+
+\newcommand{\@buildauthorloop}{%
+  \ifnum\value{@tempcnta}>\value{authorcount}%
+  \else
+    \ifnum\value{@tempcnta}=1%
+      \@buildauthorentry{\arabic{@tempcnta}}%
+    \else
+      \ifnum\value{@tempcnta}=\value{authorcount}%
+        , and \@buildauthorentry{\arabic{@tempcnta}}%
+      \else
+        , \@buildauthorentry{\arabic{@tempcnta}}%
+      \fi
+    \fi
+    \stepcounter{@tempcnta}%
+    \@buildauthorloop
+  \fi
+}
+
+\newcommand{\@buildauthorentry}[1]{%
+  \mbox{\csname author@name@#1\endcsname}\textsuperscript{\csname author@affil@#1\endcsname}%
+  \edef\@temporcid{\csname author@orcid@#1\endcsname}%
+  \ifx\@temporcid\@empty
+  \else
+    ~\href{https://orcid.org/\@temporcid}{\includegraphics[width=8pt]{orcid.png}}%
+  \fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,8 +420,14 @@
   giveninits=false,
   sortcites=true,
   maxnames=99,
+  maxbibnames=10,
   backend=biber]{biblatex}
-\RequirePackage[american]{babel}
+\if@fra
+  \RequirePackage[english, french]{babel}
+  \frenchbsetup{IndentFirst=false}
+\else
+  \RequirePackage[french, english]{babel}
+\fi
 \RequirePackage{csquotes}
 
 % MLA style customizations for biblatex
@@ -293,6 +462,12 @@
 \DeclareFieldFormat[article]{journaltitle}{\mkbibemph{#1}}
 
 % Format volume and issue numbers according to MLA
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \setunit*{}% <-- no dot/comma here; number format already adds ", no. "
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
 \DeclareFieldFormat[article]{volume}{\mkbibemph{#1}}
 \DeclareFieldFormat[article]{number}{, no. #1}
 
@@ -303,6 +478,20 @@
   editor = {edited by},
   editors = {edited by},
 }
+
+\DefineBibliographyStrings{french}{%
+  bibliography = {Bibliographie},
+  editor = {éd. par},
+  editors = {éd. par},
+}
+
+% Add French translations for babel
+\if@fra
+  \addto\captionsfrench{%
+    \def\tablename{Tableau}%
+    \def\figurename{Figure}%
+  }
+\fi
 
 \renewbibmacro*{byeditor+others}{%
   \ifnameundef{editor}
