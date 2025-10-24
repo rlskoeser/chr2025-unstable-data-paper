@@ -420,7 +420,6 @@
   giveninits=false,
   sortcites=true,
   maxnames=99,
-  maxbibnames=10,
   backend=biber]{biblatex}
 \if@fra
   \RequirePackage[english, french]{babel}
