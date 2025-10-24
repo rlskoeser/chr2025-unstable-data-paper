@@ -256,6 +256,7 @@
   style=numeric,
   giveninits=false,
   sortcites=true,
+  maxnames=99,
   backend=biber]{biblatex}
 \RequirePackage[american]{babel}
 \RequirePackage{csquotes}
