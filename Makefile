@@ -15,11 +15,11 @@ all: $(basename $(TEX_FILES))
 # Rule to build a specific document
 $(basename $(TEX_FILES)):
 	@echo "Building $@.pdf from $@.tex..."
-	pdflatex -interaction=nonstopmode $@.tex
-	pdflatex -interaction=nonstopmode $@.tex
+	xelatex -interaction=nonstopmode $@.tex
+	xelatex -interaction=nonstopmode $@.tex
 	biber $@
-	pdflatex -interaction=nonstopmode $@.tex
-	pdflatex -interaction=nonstopmode $@.tex
+	xelatex -interaction=nonstopmode $@.tex
+	xelatex -interaction=nonstopmode $@.tex
 	@echo "Build of $@.pdf complete."
 
 # Clean temporary files
