@@ -137,13 +137,6 @@ Digging deeper, we discovered complex edge cases in page numeration that would m
 \end{figure}
 %TC:endignore
 
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{images/ppa_hathitrust_lastmodified.svg}
-    \caption{test svg image}
-    \label{fig:lastmod-svg}
-\end{figure}
-
 After the technical cost of automatically fixing page ranges became apparent, the PPA team resolved that manual correction was the best solution.
 
 \section{Quantifying HathiTrust's rate of change}
@@ -157,7 +150,7 @@ A November 2023 spreadsheet used by the PPA team to correct excerpt page ranges 
 Observing this volatility at the small scale of PPA excerpts led us to wonder about the rate of change for PPA content more generally and in HathiTrust at scale. Fortunately for us, HathiTrust is incredibly transparent about changes to its collection — at least at a high level. In addition to emails HathiTrust regularly sends out with lists of records that are no longer public domain, which dataset users must remove from their copy of HathiTrust data (see Appendix \ref{appdx:ht-dataset-dist} and \ref{appdx:ht-deletion-email}), HathiTrust publishes monthly and daily files with data about updated records. They note that a volume might be included in this update file for \textit{any} of the following reasons: it was newly deposited, an existing item was replaced with a new copy, there were changes to rights and access permissions, or the bibliographic metadata was updated \cite{noauthor_hathifiles_nodate}. While the occurrence of an update is therefore relatively easy to track, identifying the exact \textit{type} of change is not so easy.\footnote{Our investigations made it clear that the modification time of the METS XML file corresponds to the date in the public version label on the full view page for individual items. The text content could be modified before or after this time. } Figure \ref{fig:hathi-daily-updates} charts the number of updated volumes across all of HathiTrust from May 1 to July 10, 2025.
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=1\linewidth]{images/hathitrust_changes_countonly.pdf}
+    \includegraphics[width=1\linewidth]{images/hathitrust_changes_countonly.png}
     \caption{Number of volumes updated daily in all of HathiTrust from May 1 to July 10, 2025.}
     \label{fig:hathi-daily-updates}
 \end{figure}
@@ -169,7 +162,7 @@ What about all the HathiTrust volumes within the Princeton Prosody Archive? How 
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=1\linewidth]{images/ppa_hathitrust_changes_countonly.pdf}
+    \includegraphics[width=1\linewidth]{images/ppa_hathitrust_changes_countonly.png}
     \caption{Number of PPA HathiTrust volumes updated daily from May 1 to July 10, 2025.}
     \label{fig:ppa-daily-updates}
 \end{figure}

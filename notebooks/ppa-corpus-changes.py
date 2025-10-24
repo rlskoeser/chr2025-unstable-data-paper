@@ -8,9 +8,10 @@ app = marimo.App(width="medium")
 def _():
     import pathlib
 
+    import altair as alt
     import marimo as mo
     import polars as pl
-    import altair as alt
+
     return alt, mo, pathlib, pl
 
 
@@ -198,17 +199,14 @@ def _(mo):
 def _(pathlib, pl):
     from pairtree import path2id
 
-
     def path_to_htid(filepath):
         filepath = pathlib.Path(filepath)
         prefix = filepath.parts[0]
         return f"{prefix}.{path2id(filepath.stem.rsplit('.')[0])}"
 
-
     def path_suffixes(filepath):
         filepath = pathlib.Path(filepath)
         return "".join(filepath.suffixes)
-
 
     lastmod_df = pl.read_csv(
         "data/ppa/ppa_htfiles_lastmod.csv",
@@ -223,10 +221,8 @@ def _(pathlib, pl):
         ),
     )
 
-
     lastmod_mets_df = lastmod_df.filter(pl.col("file_type").eq(".mets.xml"))
     lastmod_text_df = lastmod_df.filter(pl.col("file_type").eq(".zip"))
-
 
     lastmod_df.head(10)
     return lastmod_df, lastmod_mets_df, lastmod_text_df
@@ -255,8 +251,10 @@ def _(alt, lastmod_mets_df):
         .properties(height=100, width=840)
     )
 
+    # this figure is not used in the paper
+    # ppa_lastmod_chart.save("images/ppa_hathitrust_lastmodified.png", ppi=300)
+    # ppa_lastmod_chart.save("images/ppa_hathitrust_lastmodified.svg")
 
-    ppa_lastmod_chart.save("images/ppa_hathitrust_lastmodified.pdf")
     ppa_lastmod_chart
     return
 

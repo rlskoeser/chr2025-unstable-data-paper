@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.14.10"
-app = marimo.App(width="medium", auto_download=["ipynb"])
+app = marimo.App(width="medium")
 
 
 @app.cell
@@ -10,6 +10,7 @@ def _():
 
     import marimo as mo
     import polars as pl
+
     return mo, pathlib, pl
 
 
@@ -35,9 +36,7 @@ def _(field_list, hathi_data_dir, pl):
             quote_char=None,  # do not treat " as escape character, since it is used in some content
             encoding="utf8",
         )
-        .select(
-            ["htid", "access", "rights", "collection_code", "access_profile_code"]
-        )
+        .select(["htid", "access", "rights", "collection_code", "access_profile_code"])
         .collect()
     )
 
@@ -73,9 +72,7 @@ def _(df):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""Load PPA data so we can get counts for items in PPA changing as well as all of HT."""
-    )
+    mo.md(r"""Load PPA data so we can get counts for items in PPA changing as well as all of HT.""")
     return
 
 
@@ -95,6 +92,7 @@ def _(pl):
 @app.cell
 def _(field_list, hathi_data_dir, pl, ppa_ht_df):
     import datetime
+
     from polars.exceptions import NoDataError
 
     update_data = []
@@ -180,7 +178,6 @@ def _(update_data_df):
         # title=f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}",
     )
 
-
     # can we set y-domain to force the axes to align?
     pct_chart = (
         num_chart.mark_bar(width=10, color="#ff7f0e", opacity=0.5)
@@ -193,10 +190,10 @@ def _(update_data_df):
         )
     )
 
-
     #     )
 
-    num_chart.save("images/hathitrust_changes_countonly.pdf")
+    num_chart.save("images/hathitrust_changes_countonly.png", ppa=300)
+    # num_chart.save("images/hathitrust_changes_countonly.pdf")
 
     num_chart
     # can we combine and fix the scale so % is one side and count is the other?
@@ -208,7 +205,6 @@ def _(update_data_df):
     #     )
     #     .resolve_scale(x="shared", y="independent")
     # )
-
 
     # combined_chart = (
     #     (num_chart & pct_chart)
@@ -225,17 +221,13 @@ def _(update_data_df):
 
 @app.cell
 def _(earliest, latest, mo):
-    mo.md(
-        f"Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}"
-    )
+    mo.md(f"""Updated volumes in all of HathiTrust, {earliest.strftime('%B %d')} to {latest.strftime('%B %d %Y')}""")
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""What is the largest number of updates in a single day during this time period?"""
-    )
+    mo.md(r"""What is the largest number of updates in a single day during this time period?""")
     return
 
 
@@ -247,9 +239,7 @@ def _(update_data_df):
 
 @app.cell
 def _(mo, update_data_df):
-    max_update = update_data_df.sort("num_updated", descending=True).row(
-        0, named=True
-    )
+    max_update = update_data_df.sort("num_updated", descending=True).row(0, named=True)
 
     max_num_updated = max_update["num_updated"]
     max_pct_updated = max_update["pct_updated"]
@@ -297,7 +287,6 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         )
     )
 
-
     ppa_pct_chart = (
         num_chart.mark_bar(width=10, color="#57c4c4")
         .encode(
@@ -327,7 +316,8 @@ def _():
 @app.cell
 def _(ppa_num_chart):
     # num_chart.save("images/hathitrust_changes_countonly.pdf")
-    ppa_num_chart.save("images/ppa_hathitrust_changes_countonly.pdf")
+    # ppa_num_chart.save("images/ppa_hathitrust_changes_countonly.pdf")
+    ppa_num_chart.save("images/ppa_hathitrust_changes_countonly.png", ppi=300)
     ppa_num_chart
     return
 
@@ -372,9 +362,7 @@ def _(datetime, pathlib, pl, total_ht_vols):
         # use begin/end strings to isolate content of interest
         deleted_id_list = contents.split(start_str)[1].split(end_str)[0]
         # split on newlines and filter out any empty strings
-        deleted_ids = [
-            id for id in deleted_id_list.split("\n") if id.strip() != ""
-        ]
+        deleted_ids = [id for id in deleted_id_list.split("\n") if id.strip() != ""]
         deletion_count.append({"date": deletion_date, "count": len(deleted_ids)})
 
     deletion_df = (
