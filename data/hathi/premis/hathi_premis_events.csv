@@ -1,0 +1,274 @@
+filename,htid,event_type,date,detail
+33433081683744.mets.xml,nyp.33433081683744,capture,2007-11-26T22:07:00Z,Initial capture of item
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2010-09-23T08:03:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,image compression,2010-09-23T08:03:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,decryption,2010-10-02T02:41:28Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2010-10-02T02:43:34Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2010-10-02T02:43:55Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2010-10-02T02:45:06Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2010-10-02T02:45:06Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2010-10-02T02:45:06Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,capture,2010-12-04T19:53:00Z,Original image capture
+33433081683744.mets.xml,nyp.33433081683744,image compression,2012-02-03T06:43:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2012-02-03T06:43:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,decryption,2012-02-03T07:35:51Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2012-02-03T07:35:52Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2012-02-03T07:35:59Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2012-02-03T07:36:04Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2012-02-03T07:36:04Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2012-02-03T07:36:04Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,mets migration,2013-01-30T02:19:38Z,Migration of METS to new HathiTrust METS profile version
+33433081683744.mets.xml,nyp.33433081683744,premis migration,2013-01-30T02:19:40Z,Migration of PREMIS metadata to new version
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2016-09-03T10:20:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,image compression,2016-09-03T10:20:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,source mets creation,2016-09-03T10:20:00Z,Creation of source METS file
+33433081683744.mets.xml,nyp.33433081683744,decryption,2016-09-03T20:02:33Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2016-09-03T20:02:37Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2016-09-03T20:02:46Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2016-09-03T20:02:57Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2016-09-03T20:03:03Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2016-09-03T20:03:06Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,image compression,2019-12-18T18:33:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,source mets creation,2019-12-18T18:33:00Z,Creation of source METS file
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2019-12-18T18:33:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,decryption,2019-12-18T19:33:02Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2019-12-18T19:33:07Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2019-12-18T19:33:24Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2019-12-18T19:33:44Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2019-12-18T19:33:52Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2019-12-18T19:33:55Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2022-11-10T10:16:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,image compression,2022-11-10T10:16:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,source mets creation,2022-11-10T10:16:00Z,Creation of source METS file
+33433081683744.mets.xml,nyp.33433081683744,decryption,2022-11-10T15:08:35Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2022-11-10T15:08:42Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2022-11-10T15:08:57Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2022-11-10T15:09:10Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2022-11-10T15:09:15Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,premis migration,2022-11-10T15:09:19Z,Migration of PREMIS metadata to new version
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2022-11-10T15:09:19Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,image compression,2024-09-25T23:00:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+33433081683744.mets.xml,nyp.33433081683744,source mets creation,2024-09-25T23:00:00Z,Creation of source METS file
+33433081683744.mets.xml,nyp.33433081683744,message digest calculation,2024-09-25T23:00:00Z,Calculation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,decryption,2024-09-27T04:08:55Z,Decryption of Google archive
+33433081683744.mets.xml,nyp.33433081683744,fixity check,2024-09-27T04:09:13Z,Validation of MD5 checksums for image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,validation,2024-09-27T04:09:46Z,Validation of technical characteristics of image and OCR files
+33433081683744.mets.xml,nyp.33433081683744,zip archive creation,2024-09-27T04:10:12Z,Compression of content files and source METS into zip archive
+33433081683744.mets.xml,nyp.33433081683744,zip file message digest calculation,2024-09-27T04:10:27Z,Calculation of md5 checksum for zip archive
+33433081683744.mets.xml,nyp.33433081683744,ingestion,2024-09-27T04:10:35Z,Ingestion of object package into repository
+33433081683744.mets.xml,nyp.33433081683744,premis migration,2024-09-27T04:10:35Z,Migration of PREMIS metadata to new version
+b3924132.mets.xml,uc1.b3924132,capture,2007-01-03T16:26:00Z,Initial capture of item
+b3924132.mets.xml,uc1.b3924132,image compression,2010-05-05T20:56:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2010-05-05T20:56:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,decryption,2010-05-06T01:39:30Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2010-05-06T03:10:05Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2010-05-06T03:10:21Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,ingestion,2010-05-06T03:40:05Z,Ingestion of object package into repository
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2010-05-06T03:40:05Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2010-05-06T03:40:05Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,mets migration,2013-02-15T18:06:00Z,Migration of METS to new HathiTrust METS profile version
+b3924132.mets.xml,uc1.b3924132,premis migration,2013-02-15T18:06:01Z,Migration of PREMIS metadata to new version
+b3924132.mets.xml,uc1.b3924132,source mets creation,2014-05-16T11:45:00Z,Creation of source METS file
+b3924132.mets.xml,uc1.b3924132,image compression,2014-05-16T11:45:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2014-05-16T11:45:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,decryption,2014-05-16T18:45:31Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2014-05-16T18:45:33Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2014-05-16T18:47:24Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2014-05-16T18:47:30Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2014-05-16T18:49:19Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,premis migration,2014-05-16T18:49:19Z,Migration of PREMIS metadata to new version
+b3924132.mets.xml,uc1.b3924132,ingestion,2014-05-16T18:49:20Z,Ingestion of object package into repository
+b3924132.mets.xml,uc1.b3924132,source mets creation,2017-09-25T11:04:00Z,Creation of source METS file
+b3924132.mets.xml,uc1.b3924132,image compression,2017-09-25T11:04:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2017-09-25T11:04:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,decryption,2017-09-25T12:00:21Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2017-09-25T12:00:25Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2017-09-25T12:00:33Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2017-09-25T12:00:44Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2017-09-25T12:00:54Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,ingestion,2017-09-25T12:00:56Z,Ingestion of object package into repository
+b3924132.mets.xml,uc1.b3924132,image compression,2018-08-10T12:56:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2018-08-10T12:56:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,source mets creation,2018-08-10T12:56:00Z,Creation of source METS file
+b3924132.mets.xml,uc1.b3924132,decryption,2018-08-10T18:38:30Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2018-08-10T18:38:44Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2018-08-10T18:38:51Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2018-08-10T18:39:05Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2018-08-10T18:39:10Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,ingestion,2018-08-10T18:39:11Z,Ingestion of object package into repository
+b3924132.mets.xml,uc1.b3924132,image compression,2022-06-16T07:17:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,source mets creation,2022-06-16T07:17:00Z,Creation of source METS file
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2022-06-16T07:17:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,decryption,2022-06-16T11:32:51Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2022-06-16T11:32:57Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2022-06-16T11:33:10Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2022-06-16T11:33:19Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2022-06-16T11:33:26Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,ingestion,2022-06-16T11:33:29Z,Ingestion of object package into repository
+b3924132.mets.xml,uc1.b3924132,premis migration,2022-06-16T11:33:29Z,Migration of PREMIS metadata to new version
+b3924132.mets.xml,uc1.b3924132,message digest calculation,2024-04-28T11:21:00Z,Calculation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,source mets creation,2024-04-28T11:21:00Z,Creation of source METS file
+b3924132.mets.xml,uc1.b3924132,image compression,2024-04-28T11:21:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+b3924132.mets.xml,uc1.b3924132,decryption,2024-04-29T03:39:09Z,Decryption of Google archive
+b3924132.mets.xml,uc1.b3924132,fixity check,2024-04-29T03:39:16Z,Validation of MD5 checksums for image and OCR files
+b3924132.mets.xml,uc1.b3924132,validation,2024-04-29T03:39:30Z,Validation of technical characteristics of image and OCR files
+b3924132.mets.xml,uc1.b3924132,zip archive creation,2024-04-29T03:39:39Z,Compression of content files and source METS into zip archive
+b3924132.mets.xml,uc1.b3924132,zip file message digest calculation,2024-04-29T03:39:44Z,Calculation of md5 checksum for zip archive
+b3924132.mets.xml,uc1.b3924132,premis migration,2024-04-29T03:39:47Z,Migration of PREMIS metadata to new version
+b3924132.mets.xml,uc1.b3924132,ingestion,2024-04-29T03:39:47Z,Ingestion of object package into repository
+hx28d7.mets.xml,hvd.hx28d7,capture,2008-01-22T18:53:00Z,Original image capture
+hx28d7.mets.xml,hvd.hx28d7,message digest calculation,2014-10-19T15:04:00Z,Calculation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,source mets creation,2014-10-19T15:04:00Z,Creation of source METS file
+hx28d7.mets.xml,hvd.hx28d7,image compression,2014-10-19T15:04:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+hx28d7.mets.xml,hvd.hx28d7,decryption,2014-10-24T15:43:42Z,Decryption of Google archive
+hx28d7.mets.xml,hvd.hx28d7,fixity check,2014-10-24T15:44:09Z,Validation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,validation,2014-10-24T15:44:14Z,Validation of technical characteristics of image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,zip archive creation,2014-10-24T15:44:49Z,Compression of content files and source METS into zip archive
+hx28d7.mets.xml,hvd.hx28d7,premis migration,2014-10-24T15:45:11Z,Migration of PREMIS metadata to new version
+hx28d7.mets.xml,hvd.hx28d7,zip file message digest calculation,2014-10-24T15:45:12Z,Calculation of md5 checksum for zip archive
+hx28d7.mets.xml,hvd.hx28d7,ingestion,2014-10-24T15:45:12Z,Ingestion of object package into repository
+hx28d7.mets.xml,hvd.hx28d7,mets migration,2015-05-10T09:56:23Z,Migration of METS to new HathiTrust METS profile version
+hx28d7.mets.xml,hvd.hx28d7,message digest calculation,2018-10-06T15:16:00Z,Calculation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,image compression,2018-10-06T15:16:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+hx28d7.mets.xml,hvd.hx28d7,source mets creation,2018-10-06T15:16:00Z,Creation of source METS file
+hx28d7.mets.xml,hvd.hx28d7,decryption,2018-10-06T16:59:34Z,Decryption of Google archive
+hx28d7.mets.xml,hvd.hx28d7,fixity check,2018-10-06T16:59:35Z,Validation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,validation,2018-10-06T17:00:01Z,Validation of technical characteristics of image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,zip archive creation,2018-10-06T17:00:14Z,Compression of content files and source METS into zip archive
+hx28d7.mets.xml,hvd.hx28d7,zip file message digest calculation,2018-10-06T17:00:18Z,Calculation of md5 checksum for zip archive
+hx28d7.mets.xml,hvd.hx28d7,ingestion,2018-10-06T17:00:20Z,Ingestion of object package into repository
+hx28d7.mets.xml,hvd.hx28d7,source mets creation,2020-03-21T22:56:00Z,Creation of source METS file
+hx28d7.mets.xml,hvd.hx28d7,image compression,2020-03-21T22:56:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+hx28d7.mets.xml,hvd.hx28d7,message digest calculation,2020-03-21T22:56:00Z,Calculation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,decryption,2020-03-22T00:33:14Z,Decryption of Google archive
+hx28d7.mets.xml,hvd.hx28d7,fixity check,2020-03-22T00:33:17Z,Validation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,validation,2020-03-22T00:33:36Z,Validation of technical characteristics of image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,zip archive creation,2020-03-22T00:33:58Z,Compression of content files and source METS into zip archive
+hx28d7.mets.xml,hvd.hx28d7,zip file message digest calculation,2020-03-22T00:34:12Z,Calculation of md5 checksum for zip archive
+hx28d7.mets.xml,hvd.hx28d7,ingestion,2020-03-22T00:34:18Z,Ingestion of object package into repository
+hx28d7.mets.xml,hvd.hx28d7,source mets creation,2023-03-01T01:23:00Z,Creation of source METS file
+hx28d7.mets.xml,hvd.hx28d7,message digest calculation,2023-03-01T01:23:00Z,Calculation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,image compression,2023-03-01T01:23:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+hx28d7.mets.xml,hvd.hx28d7,decryption,2023-03-01T03:52:05Z,Decryption of Google archive
+hx28d7.mets.xml,hvd.hx28d7,fixity check,2023-03-01T03:52:07Z,Validation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,validation,2023-03-01T03:52:18Z,Validation of technical characteristics of image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,zip archive creation,2023-03-01T03:52:24Z,Compression of content files and source METS into zip archive
+hx28d7.mets.xml,hvd.hx28d7,zip file message digest calculation,2023-03-01T03:52:27Z,Calculation of md5 checksum for zip archive
+hx28d7.mets.xml,hvd.hx28d7,premis migration,2023-03-01T03:52:29Z,Migration of PREMIS metadata to new version
+hx28d7.mets.xml,hvd.hx28d7,ingestion,2023-03-01T03:52:29Z,Ingestion of object package into repository
+hx28d7.mets.xml,hvd.hx28d7,image compression,2024-12-19T22:42:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+hx28d7.mets.xml,hvd.hx28d7,source mets creation,2024-12-19T22:42:00Z,Creation of source METS file
+hx28d7.mets.xml,hvd.hx28d7,message digest calculation,2024-12-19T22:42:00Z,Calculation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,decryption,2024-12-20T21:22:27Z,Decryption of Google archive
+hx28d7.mets.xml,hvd.hx28d7,fixity check,2024-12-20T21:22:30Z,Validation of MD5 checksums for image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,validation,2024-12-20T21:22:41Z,Validation of technical characteristics of image and OCR files
+hx28d7.mets.xml,hvd.hx28d7,zip archive creation,2024-12-20T21:22:46Z,Compression of content files and source METS into zip archive
+hx28d7.mets.xml,hvd.hx28d7,zip file message digest calculation,2024-12-20T21:22:50Z,Calculation of md5 checksum for zip archive
+hx28d7.mets.xml,hvd.hx28d7,premis migration,2024-12-20T21:22:52Z,Migration of PREMIS metadata to new version
+hx28d7.mets.xml,hvd.hx28d7,ingestion,2024-12-20T21:22:53Z,Ingestion of object package into repository
+c2641998.mets.xml,uc1.c2641998,capture,2014-01-13T17:02:00Z,Original image capture
+c2641998.mets.xml,uc1.c2641998,message digest calculation,2014-07-07T18:21:00Z,Calculation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,image compression,2014-07-07T18:21:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+c2641998.mets.xml,uc1.c2641998,source mets creation,2014-07-07T18:21:00Z,Creation of source METS file
+c2641998.mets.xml,uc1.c2641998,decryption,2014-07-07T18:47:13Z,Decryption of Google archive
+c2641998.mets.xml,uc1.c2641998,fixity check,2014-07-07T18:47:42Z,Validation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,validation,2014-07-07T18:47:50Z,Validation of technical characteristics of image and OCR files
+c2641998.mets.xml,uc1.c2641998,zip archive creation,2014-07-07T18:48:11Z,Compression of content files and source METS into zip archive
+c2641998.mets.xml,uc1.c2641998,zip file message digest calculation,2014-07-07T18:48:32Z,Calculation of md5 checksum for zip archive
+c2641998.mets.xml,uc1.c2641998,premis migration,2014-07-07T18:48:32Z,Migration of PREMIS metadata to new version
+c2641998.mets.xml,uc1.c2641998,ingestion,2014-07-07T18:48:33Z,Ingestion of object package into repository
+c2641998.mets.xml,uc1.c2641998,source mets creation,2017-12-05T18:24:00Z,Creation of source METS file
+c2641998.mets.xml,uc1.c2641998,message digest calculation,2017-12-05T18:24:00Z,Calculation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,image compression,2017-12-05T18:24:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+c2641998.mets.xml,uc1.c2641998,decryption,2017-12-05T18:44:21Z,Decryption of Google archive
+c2641998.mets.xml,uc1.c2641998,fixity check,2017-12-05T18:44:34Z,Validation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,validation,2017-12-05T18:44:39Z,Validation of technical characteristics of image and OCR files
+c2641998.mets.xml,uc1.c2641998,zip archive creation,2017-12-05T18:44:48Z,Compression of content files and source METS into zip archive
+c2641998.mets.xml,uc1.c2641998,zip file message digest calculation,2017-12-05T18:45:02Z,Calculation of md5 checksum for zip archive
+c2641998.mets.xml,uc1.c2641998,ingestion,2017-12-05T18:45:04Z,Ingestion of object package into repository
+c2641998.mets.xml,uc1.c2641998,image compression,2021-10-24T09:26:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+c2641998.mets.xml,uc1.c2641998,source mets creation,2021-10-24T09:26:00Z,Creation of source METS file
+c2641998.mets.xml,uc1.c2641998,message digest calculation,2021-10-24T09:26:00Z,Calculation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,decryption,2021-10-24T11:32:17Z,Decryption of Google archive
+c2641998.mets.xml,uc1.c2641998,fixity check,2021-10-24T11:32:18Z,Validation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,validation,2021-10-24T11:32:22Z,Validation of technical characteristics of image and OCR files
+c2641998.mets.xml,uc1.c2641998,zip file message digest calculation,2021-10-24T11:32:28Z,Calculation of md5 checksum for zip archive
+c2641998.mets.xml,uc1.c2641998,zip archive creation,2021-10-24T11:32:28Z,Compression of content files and source METS into zip archive
+c2641998.mets.xml,uc1.c2641998,ingestion,2021-10-24T11:32:30Z,Ingestion of object package into repository
+c2641998.mets.xml,uc1.c2641998,image compression,2023-12-22T04:43:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+c2641998.mets.xml,uc1.c2641998,message digest calculation,2023-12-22T04:43:00Z,Calculation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,source mets creation,2023-12-22T04:43:00Z,Creation of source METS file
+c2641998.mets.xml,uc1.c2641998,decryption,2023-12-22T22:50:52Z,Decryption of Google archive
+c2641998.mets.xml,uc1.c2641998,fixity check,2023-12-22T22:51:10Z,Validation of MD5 checksums for image and OCR files
+c2641998.mets.xml,uc1.c2641998,validation,2023-12-22T22:51:43Z,Validation of technical characteristics of image and OCR files
+c2641998.mets.xml,uc1.c2641998,zip archive creation,2023-12-22T22:52:17Z,Compression of content files and source METS into zip archive
+c2641998.mets.xml,uc1.c2641998,zip file message digest calculation,2023-12-22T22:52:30Z,Calculation of md5 checksum for zip archive
+c2641998.mets.xml,uc1.c2641998,ingestion,2023-12-22T22:52:40Z,Ingestion of object package into repository
+c2641998.mets.xml,uc1.c2641998,premis migration,2023-12-22T22:52:40Z,Migration of PREMIS metadata to new version
+39015060425942.mets.xml,mdp.39015060425942,capture,2005-11-08T08:00:00Z,Initial capture of item
+39015060425942.mets.xml,mdp.39015060425942,capture,2005-11-10T08:00:00Z,Initial capture of item
+39015060425942.mets.xml,mdp.39015060425942,capture,2005-11-10T12:13:00Z,Initial capture of item
+39015060425942.mets.xml,mdp.39015060425942,decryption,2006-07-15T01:27:56Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2006-07-15T01:27:56Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2006-07-15T01:27:56Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,validation,2006-07-15T01:27:56Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2006-07-15T01:27:56Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2006-07-15T01:27:56Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2006-07-15T04:27:56Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,image compression,2006-07-15T04:27:56Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2008-08-19T06:05:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,image compression,2008-08-19T06:05:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,decryption,2008-08-19T09:57:03Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2008-08-19T09:57:30Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2008-08-19T09:57:52Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2008-08-19T10:01:54Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2008-08-19T10:01:54Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2008-08-19T10:01:54Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2011-08-23T16:55:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,image compression,2011-08-23T16:55:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,decryption,2011-08-24T14:21:59Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2011-08-24T14:22:00Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2011-08-24T14:22:05Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2011-08-24T14:22:17Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2011-08-24T14:22:17Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2011-08-24T14:22:17Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,mets migration,2013-01-20T14:43:21Z,Migration of METS to new HathiTrust METS profile version
+39015060425942.mets.xml,mdp.39015060425942,premis migration,2013-01-20T14:43:22Z,Migration of PREMIS metadata to new version
+39015060425942.mets.xml,mdp.39015060425942,source mets creation,2016-08-20T04:52:00Z,Creation of source METS file
+39015060425942.mets.xml,mdp.39015060425942,image compression,2016-08-20T04:52:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2016-08-20T04:52:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,decryption,2016-08-20T05:39:21Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2016-08-20T05:39:23Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2016-08-20T05:39:29Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2016-08-20T05:39:35Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2016-08-20T05:39:40Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2016-08-20T05:39:41Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2019-11-29T21:18:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,image compression,2019-11-29T21:18:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,source mets creation,2019-11-29T21:18:00Z,Creation of source METS file
+39015060425942.mets.xml,mdp.39015060425942,decryption,2019-11-29T22:44:10Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2019-11-29T22:44:13Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2019-11-29T22:44:19Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2019-11-29T22:44:28Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2019-11-29T22:44:33Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2019-11-29T22:44:34Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,image compression,2022-10-30T01:17:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2022-10-30T01:17:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,source mets creation,2022-10-30T01:17:00Z,Creation of source METS file
+39015060425942.mets.xml,mdp.39015060425942,decryption,2022-10-30T02:46:41Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2022-10-30T02:46:46Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2022-10-30T02:46:59Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2022-10-30T02:47:08Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2022-10-30T02:47:15Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,premis migration,2022-10-30T02:47:18Z,Migration of PREMIS metadata to new version
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2022-10-30T02:47:18Z,Ingestion of object package into repository
+39015060425942.mets.xml,mdp.39015060425942,source mets creation,2024-09-10T09:58:00Z,Creation of source METS file
+39015060425942.mets.xml,mdp.39015060425942,image compression,2024-09-10T09:58:00Z,Conversion of raw scans to compressed TIFF and JPEG2000
+39015060425942.mets.xml,mdp.39015060425942,message digest calculation,2024-09-10T09:58:00Z,Calculation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,decryption,2024-09-10T22:55:09Z,Decryption of Google archive
+39015060425942.mets.xml,mdp.39015060425942,fixity check,2024-09-10T22:55:15Z,Validation of MD5 checksums for image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,validation,2024-09-10T22:55:28Z,Validation of technical characteristics of image and OCR files
+39015060425942.mets.xml,mdp.39015060425942,zip archive creation,2024-09-10T22:55:39Z,Compression of content files and source METS into zip archive
+39015060425942.mets.xml,mdp.39015060425942,zip file message digest calculation,2024-09-10T22:55:46Z,Calculation of md5 checksum for zip archive
+39015060425942.mets.xml,mdp.39015060425942,premis migration,2024-09-10T22:55:49Z,Migration of PREMIS metadata to new version
+39015060425942.mets.xml,mdp.39015060425942,ingestion,2024-09-10T22:55:49Z,Ingestion of object package into repository

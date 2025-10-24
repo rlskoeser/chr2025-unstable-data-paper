@@ -19,6 +19,7 @@ dependencies = [
     "tqdm",
     "pairtree>=0.8.1",
     "nbformat>=5.10.4",
+    "neuxml>=1.0.0",
 ]
 
 [tool.setuptools]

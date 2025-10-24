@@ -31,6 +31,18 @@ def _(pl):
     return (excerpt_df,)
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""Unchanged records:""")
+    return
+
+
+@app.cell
+def _(excerpt_df, pl):
+    excerpt_df.filter(pl.col("new digital range").eq("correct"))
+    return
+
+
 @app.cell
 def _(excerpt_df, mo, pl):
     changed = excerpt_df.filter(pl.col("new digital range").ne("correct"))
