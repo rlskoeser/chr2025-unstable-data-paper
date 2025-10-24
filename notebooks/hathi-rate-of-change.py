@@ -196,7 +196,7 @@ def _(update_data_df):
 
     #     )
 
-    num_chart.save("figures/hathitrust_changes_countonly.pdf")
+    num_chart.save("images/hathitrust_changes_countonly.pdf")
 
     num_chart
     # can we combine and fix the scale so % is one side and count is the other?
@@ -217,7 +217,7 @@ def _(update_data_df):
     #     )
     #     .resolve_scale(x="shared")
     # )
-    # combined_chart.save("figures/hathitrust_changes.pdf")
+    # combined_chart.save("images/hathitrust_changes.pdf")
 
     # combined_chart
     return alt, earliest, latest, num_chart
@@ -314,7 +314,7 @@ def _(alt, earliest, latest, num_chart, update_data_df):
         )
         .resolve_scale(x="shared")
     )
-    # ppa_combined_chart.save("figures/ppa_hathitrust_changes.pdf")
+    # ppa_combined_chart.save("images/ppa_hathitrust_changes.pdf")
     ppa_combined_chart
     return (ppa_num_chart,)
 
@@ -326,8 +326,8 @@ def _():
 
 @app.cell
 def _(ppa_num_chart):
-    # num_chart.save("figures/hathitrust_changes_countonly.pdf")
-    ppa_num_chart.save("figures/ppa_hathitrust_changes_countonly.pdf")
+    # num_chart.save("images/hathitrust_changes_countonly.pdf")
+    ppa_num_chart.save("images/ppa_hathitrust_changes_countonly.pdf")
     ppa_num_chart
     return
 
@@ -343,7 +343,7 @@ def _(alt, earliest, latest, num_chart, ppa_num_chart):
     )
 
     # saving this chart fails for smoe reason
-    # ppa_ht_numchart.save("figures/ppa_and_hathitrust_changes.pdf")
+    # ppa_ht_numchart.save("images/ppa_and_hathitrust_changes.pdf")
 
     ppa_ht_numchart
     return

@@ -256,7 +256,7 @@ def _(alt, lastmod_mets_df):
     )
 
 
-    ppa_lastmod_chart.save("figures/ppa_hathitrust_lastmodified.pdf")
+    ppa_lastmod_chart.save("images/ppa_hathitrust_lastmodified.pdf")
     ppa_lastmod_chart
     return
 
